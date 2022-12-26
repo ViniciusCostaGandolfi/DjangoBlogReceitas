@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+    {% include 'partials/_header.html' %}
+
+    <div class="contact-area section-padding-0-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>Olá {{ user.username }}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    {% if receitas %}
+                    {% for receita in receitas %}
+                        <!-- Single Best Receipe Area -->
+                        <div class="col">
+                            <div class="single-best-receipe-area mb-30">
+                                {% if receita.fotoReceita == '' %}
+                                    <img src="{% static 'img/bg-img/foto_receita.png' %}">
+                                {% else %}
+                                    <img src="{{ receita.fotoReceita.url }}" alt="">
+                                {% endif %}
+                                
+                                <div class="receipe-content">
+                                    <a href="{% url 'receita' receita.id %}">
+                                        <h5>{{ receita.nomeReceita }}</h5>
+                                        <a 
+                                            href="{% url 'deletaReceita' receita.id %}" 
+                                            type='button' 
+                                            class='btn btn-danger'>
+                                                Deletar
+                                        </a>
+                                        <a 
+                                            href="{% url 'editaReceita' receita.id %}" 
+                                            type='button' 
+                                            class='btn btn-info'>
+                                                Editar
+                                        </a>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% else %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'partials/_footer.html' %}
+{% endblock %}
