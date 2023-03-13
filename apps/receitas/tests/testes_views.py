@@ -1,10 +1,10 @@
 from django.test import TestCase, RequestFactory
-from django.urls import reverse
+from django.db.models.query import QuerySet
 from apps.receitas.views import index
 
 # Create your tests here.
 
-class ReceitaURLLSTestCase(TestCase):
+class ReceitaViewsTestCase(TestCase):
 
     def setUp(self) -> None:
         self.factory = RequestFactory()
